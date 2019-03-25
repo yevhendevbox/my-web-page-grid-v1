@@ -1,0 +1,255 @@
+/*
+====================================================================
+    1.Fonts
+====================================================================
+*/
+    @font-face {
+        font-family: 'Archivo';
+        src: local('Archivo Bold'), local('Archivo-Bold'), url('../font/Archivobold.woff2') format('woff2'), url('../font/Archivobold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Archivo';
+        src: local('Archivo Medium'), local('Archivo-Medium'), url('../font/Archivomedium.woff2') format('woff2'), url('../font/Archivomedium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Archivo';
+        src: local('Archivo Regular'), local('Archivo-Regular'), url('../font/Archivoregular.woff2') format('woff2'), url('../font/Archivoregular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Archivo';
+        src: local('Archivo SemiBold'), local('Archivo-SemiBold'), url('../font/Archivosemibold.woff2') format('woff2'), url('../font/Archivosemibold.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Archivo';
+        src: local('Archivo Italic'), local('Archivo-Italic'), url('../font/Archivoitalic.woff2') format('woff2'), url('../font/Archivoitalic.woff') format('woff');
+        font-weight: 400;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Fira Mono';
+        src: local('Fira Mono'), local('FiraMono'), url('../font/firamono.woff2') format('woff2'), url('../font/firamono.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Fira Mono';
+        src: local('Fira Mono Bold'), local('FiraMono-Bold'), url('../font/firamonobold.woff2') format('woff2'), url('../font/firamonobold.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+/*
+====================================================================
+    2.Css variables and constans for styling
+====================================================================
+*/
+ :root {
+    --light: #fafafa;
+    --dark: #222222;
+    --grey: #424242;
+    --accent: #b388ff;
+
+    --ff: 'Archivo', sans-serif;
+    --ff-h: 'Fira Mono', monospace;
+
+    --fw-n: 400;
+    --fw-sb: 600;
+    --fw-m: 500;
+    --fw-b: 700;
+
+    --fs-p: 1rem;
+    --fs-s: .8rem;
+    --fs-2: 5rem;
+    --fs-3: 3rem;
+
+    --spacer: 1rem;
+    --spacer-md: calc(var(--spacer) * 2);
+    --spacer-lg: calc(var(--spacer) * 3);
+
+    --shadow: 0 0 1em rgba(0, 0, 0, .25);
+ }
+ /*
+ ===================================================================
+     3.Global Css styles
+ ===================================================================
+*/
+html, body {
+    font-family: var(--ff);
+    font-size: 16px;
+    background: var(--light);
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--ff-h);
+}
+
+
+/*
+===================================================================
+    4.Header, main nav styles
+===================================================================
+*/
+header {
+    padding: .3em 0;
+    background: var(--dark);
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+}
+header .brand {
+    display: inline-block;
+    width: 200px;
+    outline: none;
+    text-decoration: none;
+}
+header .brand img {
+    width: 100%;
+}
+nav {
+    position: absolute;
+    padding: 1.5em 0;
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background: var(--dark);
+    width: 100%;
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 400ms ease-in-out;
+}
+nav .menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav .menu .menu--item {
+    margin-bottom: var(--spacer);
+    margin-left: var(--spacer);
+}
+nav .menu .menu__link {
+    color: var(--light);
+    font-size: var(--fs-s);
+    text-decoration: none;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+    transition: color 150ms ease-in-out;
+}
+nav .menu .menu__link:hover {
+    color: var(--accent);
+}
+.menu-toggle {
+    display: none;
+}
+.menu-toggle:checked ~ nav {
+    transform: scale(1, 1);
+}
+.menu-toggle:checked ~ nav .menu__link {
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+    /* transition: color 150ms ease-in-out; */
+}
+.menu-toggle-label {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    align-items: center;
+    top: 0;
+    left: 0;
+}
+/*
+===================================================================
+    4.1 Burger icon stylesheet
+===================================================================
+*/
+.ham {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.hamRotate.active {
+  transform: rotate(45deg);
+}
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: #000;
+  stroke-width: 5.5;
+  stroke-linecap:round;
+}
+.ham8 .top {
+  stroke-dasharray: 40 160;
+}
+.ham8 .middle {
+  stroke-dasharray: 40 142;
+  transform-origin: 50%;
+  transition: transform 400ms;
+}
+.ham8 .bottom {
+  stroke-dasharray: 40 85;
+  transform-origin: 50%;
+  transition: transform 400ms, stroke-dashoffset 400ms;
+}
+.ham8.active .top {
+  stroke-dashoffset: -64px;
+}
+.ham8.active .middle {
+  //stroke-dashoffset: -20px;
+  transform: rotate(90deg);
+}
+.ham8.active .bottom {
+  stroke-dashoffset: -64px;
+}
+
+
+
+
+
+
+/*
+===================================================================
+    MEDIA QUERY styles
+===================================================================
+*/
+@media screen and (min-width: 746px) {
+    .menu-toggle-label {
+        display: none;
+    }
+    header {
+        display: grid;
+        grid-template-columns: 1fr auto minmax(600px, 4fr) 1fr;
+    }
+    header .brand {
+        grid-column: 2 / 3;
+    }
+    nav {
+        all: unset;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        grid-column: 3 / 4;
+    }
+    nav .menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+    nav .menu .menu--item {
+        margin-bottom: 0;
+        margin-left: 1.5rem;
+    }
+    nav .menu .menu__link {
+        opacity: 1;
+    }
+}
